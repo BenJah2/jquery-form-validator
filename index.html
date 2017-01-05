@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="Validator.2.0.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("#test_form").Validate({
+                send_if_valid : false,
+                valid: function (res) {
+                    console.log(res);
+                },
+                invalid: function (res) {
+                    console.log(res);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <form action="" id="test_form" novalidate>
+        <div class="form-group">
+            <input type="text" name="test" data-validate="full_name" data-title="Full Name" class="form-field">
+            <div class="single-error"></div>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" data-required="1" data-validate="email" data-title="Email" class="form-field">
+            <div class="single-error"></div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Send">
+        </div>
+        <div id="progress"></div>
+    </form>
+</body>
+</html>
