@@ -41,8 +41,7 @@ Simple HTML forms validation plugin based on jQuery
   ```
 
 
-  ## 2. HTML data-attribut
-
+## 2. HTML data-attribut
 | Name          | Description   |
 | ------------- |:-------------:|
 | data-title    | field display name |
@@ -53,8 +52,7 @@ Simple HTML forms validation plugin based on jQuery
 
 
 
-  ## 3. Options
-
+## 3. Options
 | Name          | Description   | Default value  |
 | ------------- |:-------------:| -----:|
 | validation_inputs_class      | form input elements class | form-field |
@@ -75,3 +73,18 @@ Simple HTML forms validation plugin based on jQuery
 | valid  | callback function fires when the form is valid | null |
 | invalid  | callback function fires when the form is invalid, returns the error messages as the parameter | null |
 | auto_set_error_msg  | automaticly append error messages to elements | true |
+
+
+
+## 4. Available Validation types
+- string
+- single_string (single word)
+- number
+- email
+- phone
+- name
+- full_name
+- user_name
+- password
+- same_password
+- file
