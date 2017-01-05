@@ -16,7 +16,6 @@ Simple HTML forms validation plugin based on jQuery
         <div class="form-group">
             <input type="submit" value="Send">
         </div>
-        <div id="progress"></div>
     </form>
   ```
 
