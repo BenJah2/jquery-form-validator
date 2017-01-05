@@ -30,9 +30,10 @@ Simple HTML forms validation plugin based on jQuery
   Init with custom options:
   ```javascript
   $(document).ready(function(){
-   validation_inputs_class : 'validate',
+  $("#form_id").Validate({
+    validation_inputs_class : 'validate',
     valid : function(){
-      return showThankyouPage();
+        return showThankyouPage();
     },
     invalid : function(response){
         var errors = "";
@@ -41,7 +42,8 @@ Simple HTML forms validation plugin based on jQuery
         }
         $('#my_errors').text(errors);
         return false;
-    }
+       }
+    });
   });
   ```
 
