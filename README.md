@@ -34,8 +34,11 @@ Simple HTML forms validation plugin based on jQuery
     valid : function(){
       return showThankyouPage();
     },
-    invalid : function(){
-      return false;
+    invalid : function(response){
+        for(var i in response){
+            $('#my_errors').append(i + " - " +response[i])
+        }
+        return false;
     }
   });
   ```
