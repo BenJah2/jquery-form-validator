@@ -67,6 +67,12 @@
             that.defaults.error_field = (that.defaults.all_errors_element_id.indexOf("#") >-1) ? that.defaults.all_errors_element_id : "#"+that.defaults.all_errors_element_id;
             that.defaults.all_inputs_class = (that.defaults.validation_inputs_class.indexOf(".") >-1) ? that.defaults.validation_inputs_class.substring(1) : that.defaults.validation_inputs_class;
             that.defaults.errors_class = (that.defaults.errors_class.indexOf(".") >-1) ? that.defaults.errors_class.substring(1) : that.defaults.errors_class;
+
+            if(that.defaults.remove_errors_on_focus)
+            {
+                that.removeErrorsOnFocus();
+            }
+
             if(that.defaults.handle_submit)
             {
                 $(that.form_id).on("submit", function (e)
@@ -93,13 +99,14 @@
                 {
                     that.addErrorToBag(current,display_name, that.defaults.require_text);
                 }else{
-                    var func_name = validation_type;
-                    if(validation_type.indexOf("_" > -1))
+                    var func_name = "is" + validation_type.charAt(0).toUpperCase() + validation_type.slice(1);
+                    if(validation_type.indexOf("_") > -1)
                     {
                         validation_type = validation_type.split("_");
-                        var func_name = "is"+validation_type[0].charAt(0).toUpperCase() + validation_type[0].slice(1) +
+                        func_name = "is"+validation_type[0].charAt(0).toUpperCase() + validation_type[0].slice(1) +
                                         validation_type[1].charAt(0).toUpperCase() + validation_type[1].slice(1);
                     }
+                    console.log(func_name);
                     that[func_name](current,display_name);
                 }
             });
@@ -292,6 +299,20 @@
         },
 
 
+        removeErrorsOnFocus : function ()
+        {
+            var that = this;
+            $("." + that.defaults.all_inputs_class).focus(function()
+            {
+                $(this).removeClass(that.defaults.errors_class);
+                if(that.defaults.use_single_errors)
+                {
+                    $(this).parent().find($("." + that.defaults.single_error_element_class)).text("");
+                }
+            });
+        },
+
+
         addErrorToBag : function (field_element,display_name,error_msg)
         {
             var that = this;
@@ -301,7 +322,7 @@
                 field_element.addClass(that.defaults.errors_class);
                 if(that.defaults.use_single_errors)
                 {
-                    if(field_element.attr(that.atts.custom_error_msg) !== "undefined")
+                    if(typeof field_element.attr(that.atts.custom_error_msg) !== "undefined")
                     {
                         error_msg = field_element.attr(that.atts.custom_error_msg);
                     }
