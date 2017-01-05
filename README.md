@@ -35,9 +35,11 @@ Simple HTML forms validation plugin based on jQuery
       return showThankyouPage();
     },
     invalid : function(response){
+        var errors = "";
         for(var i in response){
-            $('#my_errors').append(i + " - " +response[i])
+            errors .= i + " - " +response[i];
         }
+        $('#my_errors').text(errors);
         return false;
     }
   });
