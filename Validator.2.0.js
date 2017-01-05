@@ -106,7 +106,6 @@
                         func_name = "is"+validation_type[0].charAt(0).toUpperCase() + validation_type[0].slice(1) +
                                         validation_type[1].charAt(0).toUpperCase() + validation_type[1].slice(1);
                     }
-                    console.log(func_name);
                     that[func_name](current,display_name);
                 }
             });
